@@ -20,7 +20,41 @@
 # xterm-set-title: FIXME: document script
 #
 
-declare -r PROG='xterm-set-title'
+readonly PROG='xterm-set-title'
+
+# FIXME: Filter this into the program at build time
+# readonly gl_maintainer_addr='@DFLT_MAINTAINER@'  # filtered in at build time
+readonly gl_maintainer_addr='Alan D. Salewski <salewski@att.net>'
+
+
+f_show_usage () {
+
+# FIXME: --help not yet supported
+# FIXME: --verion not yet supported
+# FIXME: --verbose not yet supported
+# FIXME: -- not yet supported
+    cat <<EOF
+usage: $PROG [OPTION...] <NEW_TITLE>
+       $PROG [-h|--help]
+       $PROG [-v|--version]
+Emits NEW_TITLE surrounded by escape characters to set the xterm(1) window title.
+
+  -h, --help      Print this help message on stdout
+  -V, --version   Print the version of the program on stdout
+  -v, --verbose   Tell what is being done. Two or more -v options turns on tracing (set -x)
+
+      --          Signals the end of options and disables further options processing. All
+                    remaining arguments will be ignored
+
+Report bugs to ${gl_maintainer_addr}
+EOF
+}
+
+if test $# -eq 0; then
+    printf "${PROG} (error): NEW_TITLE not provided; bailing out\n" 1>&2
+    f_show_usage 1>&2
+    exit 1
+fi
 
 new_title=$1
 
