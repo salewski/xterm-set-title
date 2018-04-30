@@ -11,6 +11,9 @@
 #
 # Example 3:
 #   $ ./bootstrap --debug
+#
+# Example 4:
+#   $ ./bootstrap --force --install
 
 declare -r PROG='bootstrap'
 
