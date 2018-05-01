@@ -1,5 +1,6 @@
 #!/bin/sh -
-
+# @configure_input@
+#
 # Copyright (c) 2018 Alan D. Salewski <salewski@att.net>
 #
 #     This program is free software; you can redistribute it and/or modify
@@ -17,23 +18,41 @@
 #     Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301,, USA.
 
 #
-# xterm-set-title: FIXME: document script
+# xterm-set-title: Allows easy setting of the xterm(1) window title from the
+# command line (or from other programs).
 #
 
 readonly PROG='xterm-set-title'
 
-# FIXME: Filter this into the program at build time
-# readonly gl_maintainer_addr='@DFLT_MAINTAINER@'  # filtered in at build time
-readonly gl_maintainer_addr='Alan D. Salewski <salewski@att.net>'
+# Comma-space-separated list
+readonly COPYRIGHT_DATES='2018'
+
+readonly gl_maintainer_addr='@DFLT_MAINTAINER@'  # filtered in at build time
+
+# This variable is replaced by the current xterm-set-title project version
+# number at build time.
+readonly XTERM_SET_TITLE_VERSION='@VERSION@'
+
+# This variable is replaced at build time
+readonly gl_const_build_date='@BUILD_DATE@'
+readonly gl_const_release="${XTERM_SET_TITLE_VERSION}  (built: ${gl_const_build_date})"
 
 
-f_show_usage () {
+# By default we'll use the external programs found at configure-time (values
+# are filtered-in here at build time). But we allow the user to override any
+# particular tool by setting an environment variable named after the tool
+# (with hyphen chars changed to underscores).
+
+CAT_PROG="${CAT:-@CAT@}"
+
+
+f_print_help () {
 
 # FIXME: --help not yet supported
 # FIXME: --verion not yet supported
 # FIXME: --verbose not yet supported
 # FIXME: -- not yet supported
-    cat <<EOF
+    "${CAT_PROG}" <<EOF
 usage: $PROG [OPTION...] <NEW_TITLE>
        $PROG [-h|--help]
        $PROG [-v|--version]
@@ -50,9 +69,22 @@ Report bugs to ${gl_maintainer_addr}
 EOF
 }
 
+f_print_version () {
+    "${CAT_PROG}" <<EOF
+${PROG} ${gl_const_release}
+Copyright (C) ${COPYRIGHT_DATES} Alan D. Salewski
+License GPLv2+: GNU GPL version 2 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Alan D. Salewski.
+EOF
+}
+
+
 if test $# -eq 0; then
     printf "${PROG} (error): NEW_TITLE not provided; bailing out\n" 1>&2
-    f_show_usage 1>&2
+    f_print_help 1>&2
     exit 1
 fi
 
