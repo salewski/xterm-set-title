@@ -73,7 +73,7 @@ f_print_version () {
     "${CAT_PROG}" <<EOF
 ${PROG} ${gl_const_release}
 Copyright (C) ${COPYRIGHT_DATES} Alan D. Salewski
-License GPLv2+: GNU GPL version 2 or later <http://gnu.org/licenses/gpl.html>.
+License GPLv2+: GNU GPL version 2 or later <https://gnu.org/licenses/gpl.html>.
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
 
