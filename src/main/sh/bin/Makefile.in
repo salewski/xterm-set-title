@@ -542,7 +542,7 @@ $(GSCRIPTS): % : %.in
 # 	target_name="$@" ;\
 # 	tname=$${target_name};\
 # 	"$(POD2HTML)" \
-# 	    --htmlroot='http://example.com/' \
+# 	    --htmlroot='https://example.com/' \
 # 	    --css='../../stylesheets/pod2html-manpage.css' \
 # 	    \
 # 	    --infile='$<'      \
