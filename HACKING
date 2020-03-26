@@ -10,18 +10,18 @@ file for how to report problems).
 
 All developers working on the 'xterm-set-title' project need to be using the
 same versions of the Autotools programs in the toolchain. Currently (as of
-2018-04), those versions are:
+2020-03), those versions are:
 
-    automake 1.15
+    automake 1.16
     autoconf 2.69
 
 You can determine the versions in your PATH by invoking the respective
 tools with the '--version' option:
 
     $ automake --version
-    automake (GNU automake) 1.15
-    Copyright (C) 2014 Free Software Foundation, Inc.
-    License GPLv2+: GNU GPL version 2 or later <http://gnu.org/licenses/gpl-2.0.html>
+    automake (GNU automake) 1.16.1
+    Copyright (C) 2018 Free Software Foundation, Inc.
+    License GPLv2+: GNU GPL version 2 or later <https://gnu.org/licenses/gpl-2.0.html>
     This is free software: you are free to change and redistribute it.
     There is NO WARRANTY, to the extent permitted by law.
 
