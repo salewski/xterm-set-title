@@ -1,7 +1,7 @@
 #!/bin/sh -
 # @configure_input@
 #
-# Copyright (c) 2018 Alan D. Salewski <salewski@att.net>
+# Copyright (c) 2018, 2020 Alan D. Salewski <salewski@att.net>
 #
 #     This program is free software; you can redistribute it and/or modify
 #     it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 readonly PROG='xterm-set-title'
 
 # Comma-space-separated list
-readonly COPYRIGHT_DATES='2018'
+readonly COPYRIGHT_DATES='2018, 2020'
 
 readonly gl_maintainer_addr='@DFLT_MAINTAINER@'  # filtered in at build time
 
