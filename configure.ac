@@ -4,7 +4,7 @@ dnl +-------------------------+
 dnl |  Autotools Boilerplate  |
 dnl +-------------------------+
 
-AC_INIT([xterm-set-title], [0.0.1-snapshot], [salewski@att.net])
+AC_INIT([xterm-set-title], [0.1.0-snapshot], [salewski@att.net])
 
 dnl Ensure that a recent-enough version of Autoconf is being used
 AC_PREREQ([2.69])
@@ -29,6 +29,24 @@ dnl +------------------------+
 
 dnl makes $(LN_S) available in our Makefile.am files
 AC_PROG_LN_S
+
+
+## We need bash >= 4.x (associative arrays were added in bash-4.0, which was
+## released in 2009)
+##
+##     https://www.gnu.org/software/bash/
+##     https://tiswww.case.edu/php/chet/bash/bashtop.html
+##
+## For a list of notable changes in released bash versions, see:
+##
+##     https://mywiki.wooledge.org/BashFAQ/061
+##
+AC_PATH_PROG(BASH_SH, bash)
+AS_IF([test -z "$BASH_SH"], [AC_MSG_ERROR([bash not found])],
+      [["${BASH_SH}" -c 'test -n "${BASH_VERSINFO@<:@0@:>@:+set}" && test ${BASH_VERSINFO@<:@0@:>@]} -ge 4 && exit 0'], [:],
+      [AC_MSG_ERROR([found version of bash is not new enough; bash 4.0 or newer is required])
+])
+
 
 AC_PATH_PROG([CAT], [cat])
 if test -z "$CAT"; then
@@ -167,6 +185,7 @@ do_subst_command='do_subst = sed \
   -e '"'"'s,[@]POD2MAN[@],$(POD2MAN),g'"'"' \
   -e '"'"'s,[@]POD2HTML[@],$(POD2HTML),g'"'"' \
   \
+  -e '"'"'s,[@]BASH_SH[@],$(BASH_SH),g'"'"'   \
   -e '"'"'s,[@]CAT[@],$(CAT),g'"'"' \
 '
 ]
@@ -206,8 +225,8 @@ AC_CONFIG_FILES(
         [Makefile]
         [src/Makefile]
         [src/main/Makefile]
-        [src/main/sh/Makefile]
-        [src/main/sh/bin/Makefile]
+        [src/main/bash/Makefile]
+        [src/main/bash/bin/Makefile]
 )
 
 dnl Actually output the declared files
@@ -268,6 +287,8 @@ printf "                  Manual pages: %s\n" "`__expand_fully manhtmldir`"
 printf "                  Manual pages: %s\n" "`__expand_fully man1htmldir`"
 printf "                  Manual pages: %s\n" "`__expand_fully man5htmldir`"
 printf "                  Manual pages: %s\n" "`__expand_fully man7htmldir`"
+printf "\n"
+printf "                          bash: %s\n" "`__expand_fully BASH_SH`"
 printf "\n"
 printf "                         SHELL: %s\n" "`__expand_fully SHELL`"
 printf "\n"
