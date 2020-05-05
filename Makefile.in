@@ -159,7 +159,7 @@ CSCOPE = cscope
 DIST_SUBDIRS = $(SUBDIRS)
 am__DIST_COMMON = $(srcdir)/Makefile.in \
 	$(top_srcdir)/autotools/install-sh \
-	$(top_srcdir)/autotools/missing AUTHORS COPYING INSTALL \
+	$(top_srcdir)/autotools/missing AUTHORS COPYING INSTALL NEWS \
 	autotools/install-sh autotools/missing
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
@@ -210,6 +210,7 @@ AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
+BASH_SH = @BASH_SH@
 CAT = @CAT@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
