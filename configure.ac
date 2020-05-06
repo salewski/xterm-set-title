@@ -32,7 +32,7 @@ dnl     [AC_]PACKAGE_BUGREPORT
 dnl     [AC_]PACKAGE_URL
 dnl
 AC_INIT([[xterm-set-title]],
-        [[0.1.0-snapshot]],
+        [[0.1.0]],
         [__dflt__maintainer__full__],
         [[xterm-set-title]],
         [[https://github.com/salewski/xterm-set-title]])

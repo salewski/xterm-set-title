@@ -4,6 +4,32 @@ Simple script to set the title of the current [XTerm][XTERM-HOME] (or of a
 similarly-behaved [terminal emulator][TERMINAL-EMULATOR-WIKIPEDIA]).
 
 
+# Overview
+
+This is the README.md file for the `'xterm-set-title'` project.
+
+The `xterm-set-title` project provides a simple command line tool that allows
+you to easily set the title for your current xterm from the command line.
+
+The 'xterm-set-title' project web site is:
+
+   * https://salewski.github.io/xterm-set-title/
+
+The latest version of the project is `0.1.0` (released 2020-05-06), and can be
+downloaded from:
+
+   * https://salewski.github.io/xterm-set-title/downloads/xterm-set-title-0.1.0.tar.gz
+   * https://salewski.github.io/xterm-set-title/downloads/xterm-set-title-0.1.0.tar.gz.SHA-1
+   * https://salewski.github.io/xterm-set-title/downloads/xterm-set-title-0.1.0.tar.gz.SHA-256
+   * https://salewski.github.io/xterm-set-title/downloads/xterm-set-title-0.1.0.tar.gz.SHA3-256
+
+See the [NEWS] file for changes for this release.
+
+Older releases are available from the project's downloads page:
+
+   * https://salewski.github.io/xterm-set-title/downloads/
+
+
 # Usage
 
 From your shell within an [xterm(1)][XTERM-MAN-1] (or work-alike), do this:
