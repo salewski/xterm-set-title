@@ -453,6 +453,244 @@ printf "${PROG} (error): was error while printing terminal title-setting code; b
 exit 1
 
 
+#
+# ----------------------------------------------------------------------------
+# Documentation
+#
+# The docs are in Perl's POD format, so you can run either the 'perldoc' or
+# 'pod2man' programs on this file to produce a man page.
+#
+# To generate a man page for distribution (in a tarball or RPM, for instance),
+# you'll probably want to run pod2man something like this:
+#
+#     $ pod2man /path/to/this/file \
+#               --center='xterm-set-title' \
+#               --release='xterm-set-title-0.1.0' \
+#               --section='1' \
+#               > /outputdir/xterm-set-title.1
+#
+# To inspect the page formatting, etc., you can pipe the above 'pod2man'
+# command to:
+#
+#     'man -l -'
+#
+# instead of redirecting the output to a file.
+#
+# ----------------------------------------------------------------------------
+
+=pod
+
+=head1 NAME
+
+  xterm-set-title - Set xterm(1) window title from the command line
+
+
+=head1 SYNOPSIS
+
+  xterm-set-title {-h|--help}
+  xterm-set-title {-v|--version}
+
+  xterm-set-title [OPTION...] [--] <NEW_TITLE>
+
+
+=head1 DESCRIPTION
+
+Simple program to set the title of the current L<xterm(1)> (or of a
+similarly-behaved terminal emulator).
+
+=head2 Usage
+
+From your shell within an C<xterm(1)> (or work-alike), do this:
+
+    $ xterm-set-title 'My New Title'
+
+
+=head2 Motivation
+
+There is nothing fancy going on here. The author simply cannot remember the
+magic escape sequences that cause C<XTerm> to interpret a given string as a
+command to set the window title; C<xterm-set-title> simpy bundles up that
+knowledge into an easily reusable package.
+
+As XTerms accumulate on your desktop over time, some may tend to be long-lived
+and dedicated to specific tasks. It is useful to give descriptive names to the
+more important ones so they can be easily identified in a list (from a window
+manager or desktop manager widget, for instance). If you know in advance that
+a given XTerm window should have a specific title, then you can provide it on
+the L<xterm(1)> command line, via that program's C<-title> option. The
+C<xterm-set-title> program makes it easy to assign such names after the fact,
+and also to change them repeatedly over time, if needed.
+
+
+=head1 OPTIONS
+
+Below are the command line options currently accepted by C<xterm-set-title>.
+
+=head2 Option Syntax
+
+Unless the C<-h> (C<--help>) option or the C<-V> (C<--version>) option has
+been specified, the C<xterm-set-title> program expects exactly one command
+line argument, which will be treated as the value to use as the XTerm title.
+
+If a window title is not provided, the program emits an error message and
+exits with a non-zero exit status. Similarly if more than one window title is
+provided.
+
+Be sure to quote the window name on the command line if you want to use a
+window title that contains spaces and/or other characters that may be
+interpretted as metacharacters by your shell.
+
+Both short-form and long-form ("GNU style") options are supported. Options
+bundling is supported for the short form opts, so both of the following are
+equivalent to enable trace debugging output:
+
+    $ xterm-set-title -v -v -v my-new-title
+
+    $ xterm-set-title -vvv my-new-title
+
+The C<--> pseudo option is supported, and is even required for those corner
+cases in which you would want to set the xterm window title to a value that
+looks like a command line option (that is, it starts with a leading C<->
+character). For example:
+
+    $ xterm-set-title -- --help    # sets window title to "--help"
+
+    $ xterm-set-title -- --        # sets window title to "--"
+
+Of course, it is never wrong to use the C<--> option to separate the new
+window title from the command line options, so if used from another program it
+might be a good idea to always use it when invoking C<xterm-set-title>.
+
+    $ xterm-set-title -- whatever  # sets window title to "whatever"
+
+
+=head2 General Options
+
+=over 4
+
+=item --help
+
+Print help usage message
+
+
+=item -V, --version
+
+Print the version of the program to stdout and then exit.
+
+
+=item -v, --verbose
+
+Turn on verbose mode. Causes program to emit messages on C<stderr> indicating
+what it is doing. The option may be specified multiple times to increase
+further the level of verbosity. One C<-v> option enables info-level output;
+two such opts enable debug-level output; three or more enable trace-level
+output.
+
+Accumulating "verbose" option; tell what is being done. May be specified more
+than once; each additional instance of the option enables an additional amount
+of ouput on stderr thus:
+
+=over 4
+
+=item * One C<-v> opt produces info-level messages.
+
+=item * Two C<-v> opts enables debug-level messages, too.
+
+=item * Three or more C<-v> options turns on tracing (set -x)
+
+=back
+
+
+=item --
+
+Signals the end of options and disables further options processing.
+
+See comments above.
+
+
+=back
+
+
+=head1 EXAMPLES
+
+Set the title of the current xterm:
+
+    $ xterm-set-title 'My New Title'
+
+Same thing, only more explicitly. This is the form that is preferred when used
+in scripts because it clearly distinguishes the intended title from the
+command line options:
+
+    $ xterm-set-title -- 'My New Title'
+
+If you want to see the specific escape sequence used to set the title, ask for
+trace output (by providing three or more C<-v> options):
+
+    $ xterm-set-title -vvv 'My New Title'
+
+
+=head1 EXIT STATUS
+
+Exits with zero on success, non-zero on error.
+
+
+=head1 BUGS
+
+=over 4
+
+=item * This program is a whole lot of ceremony to achieve something so simple
+
+[Author's note: Like all good things, it started off as a one-line shell script ;-)]
+
+=back
+
+If you find any others, please report them as described in the C<BUGS>
+file. The project's GitHub issue tracker is located at:
+
+=over 4
+
+L<https://github.com/salewski/xterm-set-title/issues>
+
+=back
+
+
+=head1 SEE ALSO
+
+=over 4
+
+=item * L<xterm(1)>
+
+=item * L<https://github.com/salewski/xterm-set-title>
+
+=back
+
+
+=head1 AUTHOR
+
+=over 4
+
+=item Alan D. Salewski  <salewski@att.net>
+
+=back
+
+=cut
+
+# Copyright symbol gets munged by pod2man(1), so we'll fall back on using '(C)'
+# Copyright © 2020 Alan D. Salewski
+
+=pod
+
+=head1 COPYLEFT
+
+Copyright (C) 2020 Alan D. Salewski <salewski@att.net>
+
+License GPLv2+: GNU GPL version 2 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+=cut
+
+
 # Local Variables:
 #     mode: sh
 #     eval: (sh-set-shell "bash" t nil)
