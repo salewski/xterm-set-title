@@ -4,10 +4,37 @@ dnl +-------------------------+
 dnl |  Autotools Boilerplate  |
 dnl +-------------------------+
 
-AC_INIT([xterm-set-title], [0.1.0-snapshot], [salewski@att.net])
-
 dnl Ensure that a recent-enough version of Autoconf is being used
 AC_PREREQ([2.69])
+
+dnl Define macros that expand to the values of our maintainer strings, as they
+dnl will be expanded before being passed to AC_INIT (which wants string
+dnl literals, not shell variables):
+dnl
+dnl     configure.ac:24: warning: AC_INIT: not a literal: [${DFLT_MAINTAINER_FULL}]
+dnl
+dnl We reuse these values to set our configure-time DFLT_* shell variables
+dnl further down below.
+dnl
+m4_define([__dflt__maintainer__name__],  [[Alan D. Salewski]])
+m4_define([__dflt__maintainer__email__], [[<salewski@att.net>]])
+m4_define([__dflt__maintainer__full__],  [__dflt__maintainer__name__ __dflt__maintainer__email__])
+
+dnl Defines the following m4 macros, output variables, and preprocessor
+dnl symbols. Only the m4 macros have the 'AC_' prefix:
+dnl
+dnl     [AC_]PACKAGE_NAME
+dnl     [AC_]PACKAGE_TARNAME
+dnl     [AC_]PACKAGE_VERSION
+dnl     [AC_]PACKAGE_STRING     ("<PACKAGE> <VERSION>")
+dnl     [AC_]PACKAGE_BUGREPORT
+dnl     [AC_]PACKAGE_URL
+dnl
+AC_INIT([[xterm-set-title]],
+        [[0.1.0-snapshot]],
+        [__dflt__maintainer__full__],
+        [[xterm-set-title]],
+        [[https://github.com/salewski/xterm-set-title]])
 
 AC_CONFIG_AUX_DIR([autotools])
 
@@ -19,8 +46,17 @@ dnl Turn on all Automake warnings and report them as errors
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 
 
-DFLT_MAINTAINER="Alan D. Salewski <salewski@att.net>"
-AC_SUBST([DFLT_MAINTAINER])
+dnl These lines cause the named shell variables (DFLT_*) to be made present in
+dnl our 'configure' script, and also in our configure-time generated
+dnl files. The oddball quoting is just to "literal quote" the single-quote
+dnl chars; it also emphasizes that we are relying on the m4 expansion to
+dnl produce the values for the shell variables, and in the 'configure' script
+dnl we want those values to be single-quoted (they contain (nearly) arbitrary
+dnl string literals).
+dnl
+AC_SUBST([DFLT_MAINTAINER_NAME],  [[']][__dflt__maintainer__name__][[']])
+AC_SUBST([DFLT_MAINTAINER_EMAIL], [[']][__dflt__maintainer__email__][[']])
+AC_SUBST([DFLT_MAINTAINER_FULL],  [[']][__dflt__maintainer__full__][[']])
 
 
 dnl +------------------------+
@@ -180,7 +216,9 @@ do_subst_command='do_subst = sed \
   -e '"'"'s,[@]man5htmldir[@],$(man5htmldir),g'"'"' \
   -e '"'"'s,[@]man7htmldir[@],$(man7htmldir),g'"'"' \
   \
-  -e '"'"'s,[@]DFLT_MAINTAINER[@],$(DFLT_MAINTAINER),g'"'"' \
+  -e '"'"'s,[@]DFLT_MAINTAINER_NAME[@],$(DFLT_MAINTAINER_NAME),g'"'"'   \
+  -e '"'"'s,[@]DFLT_MAINTAINER_EMAIL[@],$(DFLT_MAINTAINER_EMAIL),g'"'"' \
+  -e '"'"'s,[@]DFLT_MAINTAINER_FULL[@],$(DFLT_MAINTAINER_FULL),g'"'"'   \
   \
   -e '"'"'s,[@]POD2MAN[@],$(POD2MAN),g'"'"' \
   -e '"'"'s,[@]POD2HTML[@],$(POD2HTML),g'"'"' \

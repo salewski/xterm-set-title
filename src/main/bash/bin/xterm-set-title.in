@@ -1,4 +1,4 @@
-#!/bin/sh -
+#!@BASH_SH@ -
 # @configure_input@
 #
 # Copyright (c) 2018, 2020 Alan D. Salewski <salewski@att.net>
@@ -27,7 +27,7 @@ readonly PROG='xterm-set-title'
 # Comma-space-separated list
 readonly COPYRIGHT_DATES='2018, 2020'
 
-readonly gl_maintainer_addr='@DFLT_MAINTAINER@'  # filtered in at build time
+readonly gl_maintainer_addr='@DFLT_MAINTAINER_FULL@'  # filtered in at build time
 
 # This variable is replaced by the current xterm-set-title project version
 # number at build time.
