@@ -1,4 +1,6 @@
 #!@BASH_SH@ -
+# SPDX-License-Identifier: GPL-2.0-or-later
+
 # @configure_input@
 #
 # Copyright (c) 2018, 2020 Alan D. Salewski <salewski@att.net>

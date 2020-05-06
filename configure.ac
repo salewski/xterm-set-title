@@ -1,4 +1,5 @@
 dnl Process this file with autoconf to produce a configure script. -*-Autoconf-*-
+dnl SPDX-License-Identifier: GPL-2.0-or-later
 
 dnl +-------------------------+
 dnl |  Autotools Boilerplate  |
