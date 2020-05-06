@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>xterm-set-title by salewski</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>xterm-set-title</h1>
+        <p>Set <a href="https://linux.die.net/man/1/xterm">xterm(1)</a> window title from the command line</p>
+
+        <p class="view"><a href="https://github.com/salewski/xterm-set-title">View the Project on GitHub <small>salewski/xterm-set-title</small></a></p>
+
+        <ul>
+          <li class="li-tarball-link"><span id="lbl-latest-tarball"><strong>Latest (released <code>2020-05-06</code>):</strong></span><br><a href="downloads/xterm-set-title-0.1.0.tar.gz"><code>xterm-set-title-0.1.0.tar.gz</code></a></li>
+        </ul>
+
+        <ul>
+<!--
+          <li><a href="https://github.com/salewski/xterm-set-title/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/salewski/xterm-set-title/tarball/master">Download <strong>TAR Ball</strong></a></li>
+-->
+
+          <li class="li-downloads-archive-link"><a href="downloads/"><strong>Downloads Archive</strong></a></li>
+
+<!--
+          <li><a href="https://github.com/salewski/xterm-set-title">View On <strong>GitHub</strong></a></li>
+-->
+        </ul>
+
+      </header>
+      <section>
+        <h3>
+<a id="welcome-to-xterm-set-title" class="anchor" href="#welcome-to-xterm-set-title" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>'<code>xterm-set-title</code>' project home page</h3>
+
+<p>The <code>xterm-set-title</code> project
+provides a simple command line tool
+that allows you to set easily
+the title for your current xterm
+from the command line.</p>
+
+<h2>Motivation</h2>
+<p>There is nothing fancy going on here.
+The author simply cannot remember the magic escape sequences
+that cause <a href="https://invisible-island.net/xterm/">XTerm</a>
+to interpret a given string
+as a command to set the window title;
+<code>xterm-set-title</code> simpy bundles up that knowledge
+into an easily reusable package.</p>
+
+<p>As XTerms accumulate on your desktop over time,
+some may tend to be long-lived
+and dedicated to specific tasks.
+It is useful to give descriptive names
+to the more important ones
+so they can be easily identified in a list
+(from a window manager or desktop manager widget, for instance).
+If you know in advance
+that a given XTerm window should have a specific title,
+then you can provide it on the <code>xterm(1)</code> command line,
+via that program's <code>-title</code> option.
+The <code>xterm-set-title</code> program
+makes it easy
+to assign such names after the fact,
+and also to change them repeatedly over time, if needed.</p>
+
+
+<h2>Usage</h2>
+<p>
+From your shell within an <code>xterm(1)</code> (or work-alike), do this:
+
+<pre>
+    $ <strong>xterm-set-title 'My New Title'</strong>
+</pre>
+</p>
+
+
+<h2>Installation</h2>
+<p>
+Installation should be as simple as:
+<pre>
+    $ ./configure   # add a --prefix=path/to/some/location to install someplace other than beneath /usr/local
+    $ make
+    $ make check    # optional, but encouraged
+    $ make install
+</pre>
+</p>
+
+
+<br></br>
+
+<h2><tt>ads-github-tools</tt> license</h2>
+<p>
+<pre>
+GPLv2+: GNU GPL version 2 or later &lt;http://gnu.org/licenses/gpl.html&gt;
+</pre>
+</p>
+
+<p>
+Unless otherwise stated by a different license notice in a particular file,
+all files in the `xterm-set-title' project are made available under the GNU
+GPL version 2, or (at your option) any later version.
+</p>
+
+<p>
+See the <a href="https://github.com/salewski/xterm-set-title/blob/master/COPYING">COPYING</a> file for the full license.
+</p>
+
+<p>
+<pre>
+Copyright (C) 2018, 2020 Alan D. Salewski &lt;salewski@att.net&gt;
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</pre>
+</p>
+
+
+<h3>
+<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+
+<p>The <code>xterm-set-title</code> project code was written by <a href="https://github.com/salewski" class="user-mention">Alan D. Salewski</a>.</p>
+
+<p>The <a href="https://github.com/">GitHub</a> project page is located at:
+<ul>
+    <li><a href="https://github.com/salewski/xterm-set-title">https://github.com/salewski/xterm-set-title</a></li>
+</ul>
+</p>
+
+
+
+<!-- FIXME: add note and link to 'BUGS' file here -->
+
+      </section>
+
+      <footer>
+        <h3><a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support or Contact</h3>
+        <p>This project page is maintained (barely!) by <a href="https://github.com/salewski">Alan D. Salewski</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
